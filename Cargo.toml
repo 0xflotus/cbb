@@ -2,6 +2,8 @@
 name = "cbb"
 version = "0.1.0"
 authors = ["0xflotus"]
+license = "MIT"
+description = "A base converter"
 edition = "2018"
 
 homepage = "https://github.com/0xflotus/cbb"
