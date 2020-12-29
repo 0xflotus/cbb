@@ -1,5 +1,7 @@
+mod util;
 use clap::{App, AppSettings, Arg};
 use num::BigInt;
+use util::cbb;
 
 fn main() {
     let matches = App::new("hcal")
@@ -40,30 +42,11 @@ fn main() {
                 std::process::exit(-1i32);
             }
 
-            let mut n = number.parse::<i128>().unwrap_or_else(|_| {
+            let n = number.parse::<i128>().unwrap_or_else(|_| {
                 println!("Error while parsing...");
                 std::process::exit(1_i32);
             });
-
-            let mut s = format!("{}", "");
-            while n > 0 {
-                let mut rem = n.rem_euclid(3);
-                n = n / 3;
-                if rem == 2 {
-                    rem = -1;
-                    n += 1;
-                }
-                if rem == 0 {
-                    s = format!("0{}", s);
-                } else {
-                    if rem == 1 {
-                        s = format!("+{}", s);
-                    } else {
-                        s = format!("-{}", s);
-                    }
-                }
-            }
-            println!("{}", format!("{:0>4}", s));
+            println!("{}", cbb::int_to_bal_ternary(n));
             std::process::exit(0i32);
         } else {
             println!("Please provide a decimal number!");
