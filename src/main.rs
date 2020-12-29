@@ -5,7 +5,7 @@ use util::cbb;
 
 fn main() {
     let matches = App::new("cbb")
-        .version("0.1.2")
+        .version("0.1.3")
         .about("A converter for numbers")
         .setting(AppSettings::AllowLeadingHyphen)
         .arg(
