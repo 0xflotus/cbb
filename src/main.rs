@@ -2,7 +2,7 @@ use clap::{App, AppSettings, Arg};
 
 fn main() {
     let matches = App::new("hcal")
-        .version("0.1.0")
+        .version("0.1.1")
         .about("A converter for numbers")
         .setting(AppSettings::AllowLeadingHyphen)
         .arg(
