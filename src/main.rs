@@ -1,4 +1,5 @@
 use clap::{App, AppSettings, Arg};
+use num::BigInt;
 
 fn main() {
     let matches = App::new("hcal")
@@ -30,15 +31,19 @@ fn main() {
 
     if matches.is_present("balanced-ternary") {
         if let Some(number) = matches.value_of("number") {
-            let mut n = number.parse::<i32>().unwrap_or_else(|_| {
+            let big_n: BigInt = number.parse::<BigInt>().unwrap_or_else(|_| {
+                println!("Error while parsing BigInt...");
+                std::process::exit(1_i32);
+            });
+            if big_n.ge(&BigInt::from(i128::MAX)) {
+                println!("Please specify a number < {}", i128::MAX);
+                std::process::exit(-1i32);
+            }
+
+            let mut n = number.parse::<i128>().unwrap_or_else(|_| {
                 println!("Error while parsing...");
                 std::process::exit(1_i32);
             });
-
-            if n < 0 {
-                println!("Please specify a number >= 0");
-                std::process::exit(-1i32);
-            }
 
             let mut s = format!("{}", "");
             while n > 0 {
