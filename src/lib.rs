@@ -2,7 +2,7 @@ pub mod util;
 
 #[test]
 fn test() {
-    const RESULTS: [&str; 10001] = [
+    const RESULTS: [&str; 0x2711usize] = [
         "0000",
         "000+",
         "00+-",
@@ -10005,7 +10005,7 @@ fn test() {
         "+----0++00",
         "+----0++0+",
     ];
-    for test_subject in 0..=10000 {
-        assert!(util::cbb::int_to_bal_ternary(test_subject) == RESULTS[test_subject as usize]);
+    for test_subject in 00..=0x2710usize {
+        assert!(util::cbb::int_to_bal_ternary(test_subject as i128) == RESULTS[test_subject as usize]);
     }
 }
