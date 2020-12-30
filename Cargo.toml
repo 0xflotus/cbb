@@ -1,6 +1,6 @@
 [package]
 name = "cbb"
-version = "0.1.6"
+version = "0.1.7"
 authors = ["0xflotus"]
 license = "MIT"
 description = "A base converter"
