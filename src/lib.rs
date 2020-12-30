@@ -10005,7 +10005,7 @@ fn test() {
         "+----0++00",
         "+----0++0+",
     ];
-    for test_subject in 0..=3000 {
+    for test_subject in 0..=10000 {
         assert!(util::cbb::int_to_bal_ternary(test_subject) == RESULTS[test_subject as usize]);
     }
 }
