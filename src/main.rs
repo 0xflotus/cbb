@@ -5,7 +5,7 @@ use util::cbb;
 
 fn main() {
     let matches = App::new("cbb")
-        .version("0.1.11")
+        .version("0.1.12")
         .about("A converter for numbers")
         .setting(AppSettings::AllowLeadingHyphen)
         .arg(
@@ -22,6 +22,13 @@ fn main() {
                 .long("balanced-ternary")
                 .takes_value(false)
                 .about("Converts decimal to balanced ternary"),
+        )
+        .arg(
+            Arg::new("unbalanced-ternary")
+                .short('u')
+                .long("unbalanced-ternary")
+                .takes_value(false)
+                .about("Converts decimal to unbalanced ternary"),
         )
         .arg(
             Arg::new("number")
@@ -47,6 +54,29 @@ fn main() {
                 std::process::exit(1_i32);
             });
             println!("{}", cbb::int_to_bal_ternary(n));
+            std::process::exit(0i32);
+        } else {
+            println!("Please provide a decimal number!");
+            std::process::exit(-1i32);
+        }
+    }
+
+    if matches.is_present("unbalanced-ternary") {
+        if let Some(number) = matches.value_of("number") {
+            let big_n: BigInt = number.parse::<BigInt>().unwrap_or_else(|_| {
+                println!("Error while parsing BigInt...");
+                std::process::exit(1_i32);
+            });
+            if big_n.ge(&BigInt::from(i128::MAX)) {
+                println!("Please specify a number < {}", i128::MAX);
+                std::process::exit(-1i32);
+            }
+
+            let n = number.parse::<i128>().unwrap_or_else(|_| {
+                println!("Error while parsing...");
+                std::process::exit(1_i32);
+            });
+            println!("{}", cbb::int_to_unbal_ternary(n));
             std::process::exit(0i32);
         } else {
             println!("Please provide a decimal number!");
