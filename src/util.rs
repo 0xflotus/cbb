@@ -24,14 +24,17 @@ pub mod cbb {
     pub fn int_to_unbal_ternary(n: i128) -> std::string::String {
         let e = n / 0x03;
         let q = n % 0x03;
+        let s: std::string::String;
         if n == 0x00 {
-            return format!("{}", 0x00);
+            s = format!("{:04}", 0x00);
         }
         else if e == 0x00 {
-            return format!("{}", q);
+            s = format!("{:04}", q);
         }
         else {
-            return format!("{}{}", int_to_unbal_ternary(e), q);
+            s = format!("{:04}", format!("{}{}", int_to_unbal_ternary(e), q));
         }
+        let i: i128 = s.parse::<i128>().unwrap();
+        return format!("{:04}", i);
     }
 }
