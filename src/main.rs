@@ -7,34 +7,34 @@ fn main() {
     let matches = App::new("cbb")
         .version("0.1.12")
         .about("A converter for numbers")
-        .setting(AppSettings::AllowLeadingHyphen)
+        .setting(AppSettings::AllowHyphenValues)
         .arg(
             Arg::new("target")
                 .short('t')
                 .long("to")
                 .takes_value(true)
                 .value_name("base")
-                .about("Sets the target base."),
+                .help("Sets the target base."),
         )
         .arg(
             Arg::new("balanced-ternary")
                 .short('b')
                 .long("balanced-ternary")
                 .takes_value(false)
-                .about("Converts decimal to balanced ternary"),
+                .help("Converts decimal to balanced ternary"),
         )
         .arg(
             Arg::new("unbalanced-ternary")
                 .short('u')
                 .long("unbalanced-ternary")
                 .takes_value(false)
-                .about("Converts decimal to unbalanced ternary"),
+                .help("Converts decimal to unbalanced ternary"),
         )
         .arg(
             Arg::new("number")
-                .about("Sets the number")
+                .help("Sets the number")
                 .required(true)
-                .index(1_u64),
+                .index(1_usize),
         )
         .get_matches();
 
